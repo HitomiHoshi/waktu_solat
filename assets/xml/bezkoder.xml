@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<site>
+    <tut>
+        <id>tut_01</id>
+        <author>bezKoder</author>
+        <title>Programming Tut#1</title>
+        <publish_date>2020-8-21</publish_date>
+        <description>Tut#1 Description</description>
+    </tut>
+    <tut>
+        <id>tut_02</id>
+        <author>zKoder</author>
+        <title>Software Dev Tut#2</title>
+        <publish_date>2020-12-18</publish_date>
+        <description>Tut#2 Description</description>
+    </tut>
+</site>
