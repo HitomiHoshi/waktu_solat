@@ -1,0 +1,46 @@
+[
+    {
+        "zon":"Pulau Aur",
+        "code":"JHR01"
+    },
+    {
+        "zon":"Pulau Pemanggil",
+        "code":"JHR01"
+    },
+    {
+        "zon":"Johor Bahru",
+        "code":"JHR02"
+    },
+    {
+        "zon":"Kota Tinggi",
+        "code":"JHR02"
+    },
+    {
+        "zon":"Mersing",
+        "code":"JHR02"
+    },
+    {
+        "zon":"Kluang",
+        "code":"JHR03"
+    },
+    {
+        "zon":"Pontian",
+        "code":"JHR03"
+    },
+    {
+        "zon":"Batu Pahat",
+        "code":"JHR04"
+    },
+    {
+        "zon":"Muar",
+        "code":"JHR04"
+    },
+    {
+        "zon":"Segamat",
+        "code":"JHR04"
+    },
+    {
+        "zon":"Gemas Johor",
+        "code":"JHR04"
+    }
+]

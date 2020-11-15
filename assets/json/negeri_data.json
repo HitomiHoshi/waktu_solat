@@ -1,0 +1,58 @@
+[
+    {
+        "negeri" : "Johor",
+        "file" : "johor_data.json"
+    },
+    {
+        "negeri" : "Kedah",
+        "file" : "kedah_data.json"
+    },
+    {
+        "negeri" : "Kelantan",
+        "file" : "kelantan_data.json"
+    },
+    {
+        "negeri" : "Melaka",
+        "file" : "melaka_data.json"
+    },
+    {
+        "negeri" : "Negeri Sembilan",
+        "file" : "negeri_sembilan_data.json"
+    },
+    {
+        "negeri" : "Pahang",
+        "file" : "pahang_data.json"
+    },
+    {
+        "negeri" : "Perak",
+        "file" : "perak_data.json"
+    },
+    {
+        "negeri" : "Perlis",
+        "file" : "perlis_data.json"
+    },
+    {
+        "negeri" : "Pulau Pinang",
+        "file" : "pulau_pinang_data.json"
+    },
+    {
+        "negeri" : "Sabah",
+        "file" : "sabah_data.json"
+    },
+    {
+        "negeri" : "Selangor",
+        "file" : "selangor_data.json"
+    },
+    {
+        "negeri" : "Serawak",
+        "file" : "serawak_data.json"
+    },
+    {
+        "negeri" : "Terengganu",
+        "file" : "terengganu_data.json"
+    },
+    {
+        "negeri" : "Wilayah Persekutuan",
+        "file" : "wilayah_prsekutuan_data.json"
+    }
+]

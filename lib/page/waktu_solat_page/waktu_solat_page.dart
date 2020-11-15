@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waktu_solat/constant/constant_style.dart';
+import 'package:waktu_solat/model/negeri_model.dart';
+import 'package:waktu_solat/model/zon_model.dart';
 import 'package:xml2json/xml2json.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,8 +14,13 @@ class WaktuSolatPage extends StatefulWidget {
 }
 
 class _WaktuSolatPageState extends State<WaktuSolatPage> {
-  TextEditingController _zon = TextEditingController();
+  String currentNegeri = "johor_data.json";
+  // String currentZon = "JHR01";
+
   List mapWaktuSolat;
+
+  List<Negeri> negeriList;
+  List<Zon> zonList;
 
   getJsonFromXMLUrl(String url) async {
     final Xml2Json xml2Json = Xml2Json();
@@ -33,19 +40,56 @@ class _WaktuSolatPageState extends State<WaktuSolatPage> {
     var data = await getJsonFromXMLUrl(
         'https://www.e-solat.gov.my/index.php?r=esolatApi/xmlfeed&zon=$zon');
 
+    print(data);
     setState(() {
       mapWaktuSolat = data['rss']['channel']['item'];
       for (var item in mapWaktuSolat) {
-        print(item['title']);
+        print(item);
       }
     });
+  }
+
+  Future getNegeriList() async {
+    var response = await DefaultAssetBundle.of(context)
+        .loadString('json/negeri_data.json');
+    print(response.toString());
+    setState(() {
+      if (response == null) {
+        negeriList = [];
+      } else {
+        final parsed =
+            json.decode(response.toString()).cast<Map<String, dynamic>>();
+        negeriList =
+            parsed.map<Negeri>((json) => new Negeri.fromJson(json)).toList();
+      }
+    });
+    print(negeriList.toString());
+  }
+
+  Future getZonList(String file) async {
+    var response = await DefaultAssetBundle.of(context)
+        .loadString('json/$file');
+    print(response.toString());
+    setState(() {
+      if (response == null) {
+        zonList = [];
+      } else {
+        final parsed =
+            json.decode(response.toString()).cast<Map<String, dynamic>>();
+        zonList =
+            parsed.map<Zon>((json) => new Zon.fromJson(json)).toList();
+      }
+    });
+    print(zonList.toString());
   }
 
   @override
   void initState() {
     super.initState();
+    getNegeriList();
     xmlStringListUrlToJson('SGR01');
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +98,57 @@ class _WaktuSolatPageState extends State<WaktuSolatPage> {
       ),
       body: ListView(
         children: [
+          if(negeriList != null) DropdownButton(
+            value: currentNegeri,
+            icon: Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            style: TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            
+            onChanged: (String newValue) {
+              setState(() {
+                currentNegeri = newValue;
+              });
+            },
+            items: negeriList.map((Negeri value) {
+              return DropdownMenuItem<String>(
+                value: value.file,
+                child: Text(value.negeri),
+              );
+            }).toList(),
+          ),
+          // if(zonList != null) DropdownButton(
+          //   value: currentZon,
+          //   icon: Icon(Icons.arrow_downward),
+          //   iconSize: 24,
+          //   elevation: 16,
+          //   style: TextStyle(color: Colors.deepPurple),
+          //   underline: Container(
+          //     height: 2,
+          //     color: Colors.deepPurpleAccent,
+          //   ),
+            
+          //   onChanged: (String newValue) {
+          //     setState(() {
+          //       currentZon = newValue;
+          //     });
+          //   },
+          //   items: zonList.map((Zon value) {
+          //     return DropdownMenuItem<String>(
+          //       value: value.code,
+          //       child: Text(value.zon),
+          //     );
+          //   }).toList(),
+          // ),
           RaisedButton(
-            child: Text('xmlStringListUrlToJson'),
+            child: Text('Cari'),
             onPressed: () {
+              
+                getZonList(currentNegeri);
               xmlStringListUrlToJson('SGR01');
             },
           ),
